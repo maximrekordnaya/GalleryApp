@@ -34,7 +34,6 @@ function signin(string $email, string $pass):bool
 function isLogin(){
     return isset($_SESSION['login']) && $_SESSION['login'];
 }
-
 function logout(){
     session_destroy();    
 }
