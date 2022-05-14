@@ -3,6 +3,11 @@ define('ROOT', __DIR__);
 define('DB_USERS', ROOT . '/db/users.json');
 define('STORAGE', ROOT . '/storage');
 session_start();
+// if(!isset($_SESSION['login'])){
+//     $_SESSION['login'] = false;
+// }
+
+//  $_SESSION['login'] = false;
 include_once('./services/auth_service.php');
 include_once('../tools/dd.php');
 ?>
@@ -17,10 +22,9 @@ include_once('../tools/dd.php');
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style/bootstrap.min.css">
-
+    <link rel="stylesheet" href="./style/style.css">
     <title>GalleryApp</title>
 </head>
-
 <body>
     <div class="container">
         <div class="row mb-4">
@@ -48,28 +52,53 @@ include_once('../tools/dd.php');
                             <li class="nav-item">
                                 <a class="nav-link" aria-current="page" href="index.php?page=gallery">Your album</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="index.php?scripts=logout">LogOut</a>
+                            </li>
                             <?php endif; ?>
-                            
                         </ul>
                     </div>
                 </div>
             </nav>
         </div>
         <div class="row justify-content-center">
+            
             <!-- подгрузка контента динамически -->
             <?php 
+            if(isset($_GET['scripts']))
+            {
+                switch($_GET['scripts']){
+                    case 'logout':
+                        include_once('./scripts/logout.php');
+                        break;
+                    default:
+                        include_once('./pages/404.php');
+                    }
+            }
+            $priv_pages = [
+                'load', 'gallery',
+            ];
             if(isset($_GET['page'])){
                 $page = $_GET['page'];
+                if(in_array($page, $priv_pages) && !isLogin()){
+                    header("Location: index.php?page=login");
+                }
                 switch($page){
                     case 'registration':
                         include_once('./pages/registration.php');
                         break;
                     case 'login':
                         include_once('./pages/login.php');
+                        break;
                     case 'load':
                         include_once('./pages/load.php');
+                        break;
                     case 'gallery':
                         include_once('./pages/gallery.php');
+                        break;
+                    case 'logout':
+                        include_once('./scripts/logout.php');
+                        break;
                     default:
                         include_once('./pages/404.php');
                 }

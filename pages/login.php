@@ -35,6 +35,7 @@ else{
                 notify('Email or pass invalid', 'alert-danger');
          }else{
              $_SESSION['login'] = true;
+             $_SESSION['hash'] = md5($_POST['useremail']);
              header('Location: index.php');
             
          }

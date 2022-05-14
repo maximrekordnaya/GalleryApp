@@ -5,7 +5,7 @@ function signup(string $email, string $pass){
 
     //json_decode
     //jsom_decode
-    $users = json_decode(file_get_contents( DB_USERS), true);
+    $users = json_decode(file_get_contents(DB_USERS), true);
     if(in_array($email, array_column($users, 'email'))){
         return false;
     }
@@ -13,13 +13,10 @@ function signup(string $email, string $pass){
         'email' => $email,
         'pass' => md5($pass),
     ];
-    $users[] = $user;
-    
+    $users[] = $user;    
     file_put_contents(DB_USERS, json_encode($users));
     return true;
-
 }
-
 function signin(string $email, string $pass):bool
 {
     $users = json_decode(file_get_contents( DB_USERS), true);
@@ -35,7 +32,11 @@ function signin(string $email, string $pass):bool
 }
 
 function isLogin(){
-    return $_SESSION['login'];
+    return isset($_SESSION['login']) && $_SESSION['login'];
+}
+
+function logout(){
+    session_destroy();    
 }
 
 ?>
