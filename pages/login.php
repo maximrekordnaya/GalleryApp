@@ -6,7 +6,7 @@ if(!isset($_POST['frm_login'])){
 <h1 class="display-6 mb-3">Login</h1>
     <form action="index.php?page=login" method="POST">
         <div class="mb-3">
-            <label for="email" class="form-label">Email address</label>
+            <label for="email" class="form-label">Email address</label>            
             <input type="email" name="useremail" class="form-control" id="email">
         </div>
         <div class="mb-3">
@@ -17,6 +17,7 @@ if(!isset($_POST['frm_login'])){
         <button type="submit" class="btn btn-primary">SAVE</button>
     </form>
 </div>
+<script src="../js/validation.js"></script>
 <?php
 }
 else{   
@@ -36,8 +37,7 @@ else{
          }else{
              $_SESSION['login'] = true;
              $_SESSION['hash'] = md5($_POST['useremail']);
-             header('Location: index.php');
-            
+             header('Location: index.php');            
          }
      }
 

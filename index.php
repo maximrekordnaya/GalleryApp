@@ -9,7 +9,7 @@ session_start();
 
 //  $_SESSION['login'] = false;
 include_once('./services/auth_service.php');
-include_once('../tools/dd.php');
+// include_once('../tools/dd.php');
 ?>
 
 

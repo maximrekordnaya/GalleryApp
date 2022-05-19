@@ -5,3 +5,9 @@
 .photo{
     width: 200px;
 }
+.valid-error{    
+    color: red;    
+}
+.hidden{    
+    display: none;    
+}

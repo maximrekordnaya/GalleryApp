@@ -1,6 +1,6 @@
 
 
-
+<!-- <link rel="stylesheet" href="./style/style.css"> -->
 <?php
 if(!isset($_POST['frm_registration'])){
 
@@ -8,29 +8,33 @@ if(!isset($_POST['frm_registration'])){
 
 <div class="col-sm-12 col-md-8 col-lg-4">
 <h1 class="display-6 mb-3">Registration</h1>
-    <form action="index.php?page=registration" method="POST">
+    <form action="index.php?page=registration" method="POST" id="formReg">
         <div class="mb-3">
             <label for="email" class="form-label">Email address</label>
-            <input type="email" name="useremail" class="form-control" id="email">
+            <div class="_email valid-error hidden" id="email-error">Check if your email is correct</div>
+            <input type="email" name="useremail" class="form-control _req _email" id="email">
         </div>
         <div class="mb-3">
             <label for="pass" class="form-label">Password</label>
-            <input type="password" name="pass" class="form-control" id="pass">
+            <div class="_pass valid-error hidden" id="pass-error">The password must contain at least 6 characters, a number, capital letters and small letters.</div>
+            <input type="password" name="pass" class="form-control _req _pass" id="pass">
         </div>
         <div class="mb-3">
             <label for="confirm_pass" class="form-label">Password</label>
-            <input type="password" name="confirm_pass" class="form-control" id="confirm_pass">
+            <div class="_confirm valid-error hidden" id="confirm-error">Passwords do not match</div>
+            <input type="password" name="confirm_pass" class="form-control _req _confirm" id="confirm_pass">
         </div>
 
         <input type="hidden" name="frm_registration">
 
-        <button type="submit" class="btn btn-primary">SAVE</button>
+        <button type="submit" id="btn" class="btn btn-primary">SAVE</button>
 
 
     </form>
 </div>
-
+<script src="../js/validation.js"></script>
 <?php
+
 }
 else{
     // var_dump($_POST['frm_registration']);
@@ -64,3 +68,4 @@ else{
 }
 
 ?>
+

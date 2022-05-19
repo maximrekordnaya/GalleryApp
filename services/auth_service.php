@@ -30,7 +30,6 @@ function signin(string $email, string $pass):bool
     
     return $user['pass'] === md5($pass);
 }
-
 function isLogin(){
     return isset($_SESSION['login']) && $_SESSION['login'];
 }
