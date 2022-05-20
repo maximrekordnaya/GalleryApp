@@ -37,12 +37,16 @@ include_once('./services/auth_service.php');
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
+                        <?php
+                                if(!isLogin()):                            
+                            ?>
                             <li class="nav-item">
                                 <a class="nav-link" aria-current="page" href="index.php?page=registration">Registration</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" aria-current="page" href="index.php?page=login">LogIn</a>
                             </li>
+                            <?php endif; ?>
                             <?php
                                 if(isLogin()):                            
                             ?>
@@ -59,7 +63,8 @@ include_once('./services/auth_service.php');
                         </ul>
                     </div>
                 </div>
-            </nav>
+                
+            </nav>            
         </div>
         <div class="row justify-content-center">
             
@@ -102,11 +107,20 @@ include_once('./services/auth_service.php');
                     default:
                         include_once('./pages/404.php');
                 }
-            }
-
-            
-            
+            }else{            
             ?>
+            <div class="col-md-5 text-center">
+                
+                <h1 class="display-6">GalleryApp</h1>
+                <span class="main_text">This is your picture repository. Register and store them here.</span>
+            
+
+            </div>            
+
+
+            <?php
+            }
+            ?>   
         </div>
     </div>
 

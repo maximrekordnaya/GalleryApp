@@ -6,7 +6,7 @@ if(!isset($_POST['frm_registration'])){
 
 ?>
 
-<div class="col-sm-12 col-md-8 col-lg-4">
+<div class="col-sm-12 col-md-8 col-lg-4 card p-4">
 <h1 class="display-6 mb-3">Registration</h1>
     <form action="index.php?page=registration" method="POST" id="formReg">
         <div class="mb-3">
